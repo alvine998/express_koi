@@ -9,7 +9,10 @@ exports.create = (req, res) => {
         nohp: req.body.nohp,
         email: req.body.email,
         password: bcrypt.hashSync(req.body.password, 8),
-        foto: req.body.foto
+        foto: req.body.foto || '',
+        jumlah: req.body.jumlah || '0',
+        frekuensi_donasi: req.body.frekuensi_donasi || '0',
+        poin: req.body.poin || '0',
     });
 
     // bcrypt.genSalt(8, (err,salt) => {
