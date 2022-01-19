@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const {ObjectId} = mongoose.Schema.Types;
 
-const UsersSchema = mongoose.Schema({
+const DonasiSchema = mongoose.Schema({
     iduser:{type: ObjectId, ref:'users.model'},
     judul: String,
     deskripsi: String,
@@ -12,4 +12,4 @@ const UsersSchema = mongoose.Schema({
     timestamps: true
 });
 
-module.exports = mongoose.model('Users', UsersSchema);
+module.exports = mongoose.model('Donasi', DonasiSchema);

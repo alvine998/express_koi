@@ -41,10 +41,13 @@ global.__basedir = __dirname;
 
 // Require Notes routes
 require('./app/routes/users.routes.js')(app);
+require('./app/routes/image.routes.js')(app);
+require('./app/routes/bannerimage.routes.js')(app);
+require('./app/routes/banner.routes.js')(app);
 
 
 const dirname = path.resolve();
-app.use("/resources/upload/", express.static(path.join(dirname, "/resources/uploads/")));
+app.use("/resources/uploads/", express.static(path.join(dirname, "/resources/uploads/")));
 
 // listen for requests
 app.listen(4000, () => {
