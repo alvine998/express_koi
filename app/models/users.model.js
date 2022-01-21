@@ -4,11 +4,16 @@ const UsersSchema = mongoose.Schema({
     nama: String,
     nohp: String,
     email: String,
+    jeniskelamin: String,
+    alamat: String,
+    fotoktp: String,
+    pekerjaan: String,
     password: String,
     foto: String,
     jumlah: Number,
     frekuensi_donasi: Number,
-    poin: Number
+    poin: Number,
+    statususer: String
 }, {
     timestamps: true
 });

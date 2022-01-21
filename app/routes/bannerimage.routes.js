@@ -29,7 +29,7 @@ module.exports = (app) => {
         }
     });
 
-    app.delete("/delete/:imageName", (req, res) => {
+    app.delete("/delete/banner/:imageName", (req, res) => {
     
         if (!req.params) {
           return res.status(500).json({

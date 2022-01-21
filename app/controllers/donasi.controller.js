@@ -1,28 +1,21 @@
 const Donasi = require('../models/donasi.model.js');
-const bcrypt = require('bcryptjs');
 
 // Create and Save a new Note
 exports.create = (req, res) => {
     // Create a Note
-    const users = new Users({
-        nama: req.body.nama,
-        nohp: req.body.nohp,
-        email: req.body.email,
-        foto: req.body.foto || '',
-        jumlah: req.body.jumlah || '0',
-        frekuensi_donasi: req.body.frekuensi_donasi || '0',
-        poin: req.body.poin || '0',
+    const donasi = new Donasi({
+        iduser: req.body.iduser,
+        judul: req.body.judul,
+        deskripsi: req.body.deskripsi,
+        target: req.body.target,
+        terkumpul: req.body.terkumpul,
+        kategori: req.body.kategori,
+        foto: req.body.foto,
+        status_donasi: req.body.status_donasi
     });
 
-    // bcrypt.genSalt(8, (err,salt) => {
-    //     bcrypt.hash(user.password,salt,(err,hash) => {
-    //         if(err) throw err;
-    //             user.save()
-    //     })
-    // })
-
     // Save Note in the database
-    users.save()
+    donasi.save()
         .then(data => {
             res.send(data);
         }).catch(err => {
@@ -33,14 +26,14 @@ exports.create = (req, res) => {
 };
 
 exports.onLogin = (req,res) => {
-    Users.findOne({email: req.body.email})
-    .then(users => {
-        if(!users){
+    Donasi.findOne({email: req.body.email})
+    .then(donasi => {
+        if(!donasi){
             return res.status(404).send({
                 message: "User not found with email "
             });  
         } else {
-            bcrypt.compare(req.body.password, users.password, (err, result) => {
+            bcrypt.compare(req.body.password, donasi.password, (err, result) => {
                 if(result == true){
                     res.status(200).send({Success: "Login Ok"})
                 } else {
@@ -53,9 +46,9 @@ exports.onLogin = (req,res) => {
 
 // Retrieve and return all notes from the database.
 exports.findAll = (req, res) => {
-    Users.find()
-        .then(userss => {
-            res.send(userss);
+    Donasi.find()
+        .then(donasis => {
+            res.send(donasis);
         }).catch(err => {
             res.status(500).send({
                 message: err.message || "Some error occurred while retrieving notes."
@@ -66,46 +59,46 @@ exports.findAll = (req, res) => {
 // Update a note identified by the noteId in the request
 exports.update = (req, res) => {
     // Find note and update it with the request body
-    Users.findByIdAndUpdate(req.params.usersId,
+    Donasi.findByIdAndUpdate(req.params.donasiId,
         req.body
         , { new: true })
-        .then(users => {
-            if (!users) {
+        .then(donasi => {
+            if (!donasi) {
                 return res.status(404).send({
-                    message: "users not found with id " + req.params.usersId
+                    message: "donasi not found with id " + req.params.donasiId
                 });
             }
-            res.send(users);
+            res.send(donasi);
         }).catch(err => {
             if (err.kind === 'ObjectId') {
                 return res.status(404).send({
-                    message: "users not found with id " + req.params.usersId
+                    message: "donasi not found with id " + req.params.donasiId
                 });
             }
             return res.status(500).send({
-                message: "Error updating users with id " + req.params.usersId
+                message: "Error updating donasi with id " + req.params.donasiId
             });
         });
 };
 
 // Find a single note with a noteId
 exports.findOne = (req, res) => {
-    Users.findById(req.params.usersId)
+    Donasi.findById(req.params.donasiId)
         .then(user => {
             if (!user) {
                 return res.status(404).send({
-                    message: "users not found with id " + req.params.usersId
+                    message: "donasi not found with id " + req.params.donasiId
                 });
             }
             res.send(user);
         }).catch(err => {
             if (err.kind === 'ObjectId') {
                 return res.status(404).send({
-                    message: "users not found with id " + req.params.usersId
+                    message: "donasi not found with id " + req.params.donasiId
                 });
             }
             return res.status(500).send({
-                message: "Error retrieving users with id " + req.params.usersId
+                message: "Error retrieving donasi with id " + req.params.donasiId
             });
         });
 };
@@ -113,44 +106,44 @@ exports.findOne = (req, res) => {
 // Find a single note with a noteId
 exports.findOneEmail = (req, res) => {
     const emails = req.params.emails;
-    Users.findOne({"email" : emails})
-    .then(users => {
-        if(!users) {
+    Donasi.findOne({"email" : emails})
+    .then(donasi => {
+        if(!donasi) {
             return res.status(404).send({
                 message: "Email not found with id " + req.params.emails
             });            
         }
-        res.send(users);
+        res.send(donasi);
     }).catch(err => {
         if(err.kind === 'ObjectId') {
             return res.status(404).send({
-                message: "users not found with id " + req.params.emails
+                message: "donasi not found with id " + req.params.emails
             });                
         }
         return res.status(500).send({
-            message: "Error retrieving users with id " + req.params.emails
+            message: "Error retrieving donasi with id " + req.params.emails
         });
     });
 };
 
 // Delete a note with the specified noteId in the request
 exports.delete = (req, res) => {
-    Users.findByIdAndRemove(req.params.usersId)
-        .then(users => {
-            if (!users) {
+    Donasi.findByIdAndRemove(req.params.donasiId)
+        .then(donasi => {
+            if (!donasi) {
                 return res.status(404).send({
-                    message: "users not found with id " + req.params.usersId
+                    message: "donasi not found with id " + req.params.donasiId
                 });
             }
-            res.send({ message: "users deleted successfully!" });
+            res.send({ message: "donasi deleted successfully!" });
         }).catch(err => {
             if (err.kind === 'ObjectId' || err.name === 'NotFound') {
                 return res.status(404).send({
-                    message: "users not found with id " + req.params.usersId
+                    message: "donasi not found with id " + req.params.donasiId
                 });
             }
             return res.status(500).send({
-                message: "Could not delete users with id " + req.params.usersId
+                message: "Could not delete donasi with id " + req.params.donasiId
             });
         });
 };

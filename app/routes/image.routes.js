@@ -26,5 +26,26 @@ module.exports = (app) => {
                 info : req.file.filename
             })
         }
-    })
+    });
+
+    app.delete("/delete/:imageName", (req, res) => {
+    
+        if (!req.params) {
+          return res.status(500).json({
+            msg: "params undefined",
+          });
+        } else {
+          const fileExist = fs.existsSync(`resources/uploads/${req.params.imageName}`);
+          if (fileExist) {
+            fs.unlinkSync(`resources/uploads/${req.params.imageName}`);
+            // return res.status(200).json({
+            //   fileExist,
+            // });
+            res.status(200).send({ msg: "file dihapus" });
+          } else {
+            res.status(404).json({ msg: "file doesnt exist" });
+            // res.status(404).send(fileExist);
+          }
+        }
+      });
 }

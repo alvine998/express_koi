@@ -8,11 +8,16 @@ exports.create = (req, res) => {
         nama: req.body.nama,
         nohp: req.body.nohp,
         email: req.body.email,
+        alamat: req.body.alamat || '',
+        jeniskelamin: req.body.jeniskelamin || '',
+        fotoktp: req.body.fotoktp || '',
+        pekerjaan: req.body.pekerjaan || '',
         password: bcrypt.hashSync(req.body.password, 8),
         foto: req.body.foto || '',
         jumlah: req.body.jumlah || '0',
         frekuensi_donasi: req.body.frekuensi_donasi || '0',
         poin: req.body.poin || '0',
+        statususer: req.body.statususer || 'not verified',
     });
 
     // bcrypt.genSalt(8, (err,salt) => {

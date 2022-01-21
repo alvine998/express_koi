@@ -44,6 +44,7 @@ require('./app/routes/users.routes.js')(app);
 require('./app/routes/image.routes.js')(app);
 require('./app/routes/bannerimage.routes.js')(app);
 require('./app/routes/banner.routes.js')(app);
+require('./app/routes/donasi.routes.js')(app);
 
 
 const dirname = path.resolve();

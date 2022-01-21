@@ -7,6 +7,8 @@ const DonasiSchema = mongoose.Schema({
     deskripsi: String,
     target: Number,
     terkumpul: Number,
+    kategori: String,
+    foto: String,
     status_donasi: String
 }, {
     timestamps: true
