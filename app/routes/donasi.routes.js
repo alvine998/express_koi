@@ -8,6 +8,13 @@ module.exports = (app) => {
     // Retrieve all donasi
     app.get('/donasis', donasi.findAll);
 
+     // Retrieve all donasi
+     app.get('/donasis/valid', donasi.findStatus);
+     app.get('/donasis/valid/kesehatan', donasi.findKesehatan);
+     app.get('/donasis/valid/sedekah', donasi.findSedekah);
+     app.get('/donasis/valid/lain-lain', donasi.findLainlain);
+     app.get('/donasis/valid/bencana', donasi.findBencana);
+
     // Retrieve all donasi
     app.get('/donasis/:donasiId', donasi.findOne);
 

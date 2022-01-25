@@ -9,6 +9,7 @@ const DonasiSchema = mongoose.Schema({
     terkumpul: Number,
     kategori: String,
     foto: String,
+    durasi:Number,
     status_donasi: String
 }, {
     timestamps: true

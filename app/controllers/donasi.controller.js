@@ -11,6 +11,7 @@ exports.create = (req, res) => {
         terkumpul: req.body.terkumpul,
         kategori: req.body.kategori,
         foto: req.body.foto,
+        durasi: req.body.durasi,
         status_donasi: req.body.status_donasi
     });
 
@@ -25,23 +26,59 @@ exports.create = (req, res) => {
         });
 };
 
-exports.onLogin = (req,res) => {
-    Donasi.findOne({email: req.body.email})
-    .then(donasi => {
-        if(!donasi){
-            return res.status(404).send({
-                message: "User not found with email "
-            });  
-        } else {
-            bcrypt.compare(req.body.password, donasi.password, (err, result) => {
-                if(result == true){
-                    res.status(200).send({Success: "Login Ok"})
-                } else {
-                    res.status(500).send({Failed: "Email or Password Wrong"})
-                }
-            })
-        }
-    })
+exports.findStatus = (req,res) => {
+    Donasi.find({status_donasi: 'Valid'})
+        .then(donasis => {
+            res.send(donasis);
+        }).catch(err => {
+            res.status(500).send({
+                message: err.message || "Some error occurred while retrieving notes."
+            });
+        });
+}
+
+exports.findKesehatan = (req,res) => {
+    Donasi.find({kategori: 'Kesehatan', status_donasi: 'Valid'})
+        .then(donasis => {
+            res.send(donasis);
+        }).catch(err => {
+            res.status(500).send({
+                message: err.message || "Some error occurred while retrieving notes."
+            });
+        });
+}
+
+exports.findSedekah = (req,res) => {
+    Donasi.find({kategori: 'Sedekah', status_donasi: 'Valid'})
+        .then(donasis => {
+            res.send(donasis);
+        }).catch(err => {
+            res.status(500).send({
+                message: err.message || "Some error occurred while retrieving notes."
+            });
+        });
+}
+
+exports.findLainlain = (req,res) => {
+    Donasi.find({kategori: 'Lain-lain', status_donasi: 'Valid'})
+        .then(donasis => {
+            res.send(donasis);
+        }).catch(err => {
+            res.status(500).send({
+                message: err.message || "Some error occurred while retrieving notes."
+            });
+        });
+}
+
+exports.findBencana = (req,res) => {
+    Donasi.find({kategori: 'Bencana Alam', status_donasi: 'Valid'})
+        .then(donasis => {
+            res.send(donasis);
+        }).catch(err => {
+            res.status(500).send({
+                message: err.message || "Some error occurred while retrieving notes."
+            });
+        });
 }
 
 // Retrieve and return all notes from the database.

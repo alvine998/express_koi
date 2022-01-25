@@ -48,4 +48,17 @@ module.exports = (app) => {
           }
         }
       });
+
+    // API Image Donasi
+    app.post("/upload/donasi", upload.single('donasiimages'), (req,res) => {
+      if(!req.file){
+          console.log("No file upload");
+      } else {
+          console.log(req.file.filename)
+          res.status(200).send({
+              message: "success",
+              info : req.file.filename
+          })
+      }
+  });
 }
