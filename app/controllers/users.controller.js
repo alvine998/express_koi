@@ -11,12 +11,15 @@ exports.create = (req, res) => {
         alamat: req.body.alamat || '',
         jeniskelamin: req.body.jeniskelamin || '',
         fotoktp: req.body.fotoktp || '',
+        fotorekening: req.body.fotorekening || '',
         pekerjaan: req.body.pekerjaan || '',
         password: bcrypt.hashSync(req.body.password, 8),
         foto: req.body.foto || '',
         jumlah: req.body.jumlah || '0',
         frekuensi_donasi: req.body.frekuensi_donasi || '0',
         poin: req.body.poin || '0',
+        statusktp: req.body.statusktp || 'not verified',
+        statusrekening: req.body.statusrekening || 'not verified',
         statususer: req.body.statususer || 'not verified',
     });
 

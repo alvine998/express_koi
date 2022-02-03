@@ -9,7 +9,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }))
 
 var corsOptions = {
-    origin: "http://localhost:8081"
+    origin: "http://localhost:3000"
 };
 
 app.use(cors(corsOptions));
@@ -45,6 +45,7 @@ require('./app/routes/image.routes.js')(app);
 require('./app/routes/bannerimage.routes.js')(app);
 require('./app/routes/banner.routes.js')(app);
 require('./app/routes/donasi.routes.js')(app);
+require('./app/routes/transaksi.routes.js')(app);
 
 
 const dirname = path.resolve();

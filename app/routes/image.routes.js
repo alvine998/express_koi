@@ -60,5 +60,18 @@ module.exports = (app) => {
               info : req.file.filename
           })
       }
-  });
+    });
+
+    // API Image Bukti Transaksi
+    app.post("/upload/transaksi", upload.single('transaksiimages'), (req,res) => {
+      if(!req.file){
+          console.log("No file upload");
+      } else {
+          console.log(req.file.filename)
+          res.status(200).send({
+              message: "success",
+              info : req.file.filename
+          })
+      }
+    });
 }

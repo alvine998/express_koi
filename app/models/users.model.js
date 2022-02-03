@@ -13,6 +13,9 @@ const UsersSchema = mongoose.Schema({
     jumlah: Number,
     frekuensi_donasi: Number,
     poin: Number,
+    fotorekening:String,
+    statusktp:String,
+    statusrekening:String,
     statususer: String
 }, {
     timestamps: true
