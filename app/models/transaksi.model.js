@@ -8,7 +8,8 @@ const TransaksiSchema = mongoose.Schema({
     bank:String,
     nominal: Number,
     poin: Number,
-    status_transaksi: String
+    status_transaksi: String,
+    keterangan: String
 }, {
     timestamps: true
 });

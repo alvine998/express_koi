@@ -10,7 +10,8 @@ exports.create = (req, res) => {
         bank: req.body.bank,
         nominal: req.body.nominal,
         poin: req.body.poin,
-        status_transaksi: req.body.status_transaksi
+        status_transaksi: req.body.status_transaksi,
+        keterangan: req.body.keterangan
     });
 
     // Save Note in the database
