@@ -14,7 +14,6 @@ module.exports = (app) => {
     var upload = multer({
         storage: storage
     });
-    
 
     app.post("/upload", upload.single('images'), (req,res) => {
         if(!req.file){

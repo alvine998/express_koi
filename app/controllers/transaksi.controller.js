@@ -11,6 +11,8 @@ exports.create = (req, res) => {
         nominal: req.body.nominal,
         poin: req.body.poin,
         status_transaksi: req.body.status_transaksi,
+        nama: req.body.nama,
+        norek: req.body.norek,
         keterangan: req.body.keterangan
     });
 

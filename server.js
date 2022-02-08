@@ -2,6 +2,13 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
+// const http = require('http');
+// const https = require('https');
+
+// const fs = require('fs');
+// var privateKey = fs.readFileSync(`sslcert/server.key`, `utf8`);
+// var certificate = fs.readFileSync(`sslcert/server.crt`, `utf8`);
+
 
 const app = express();
 

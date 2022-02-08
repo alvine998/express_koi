@@ -9,6 +9,8 @@ const TransaksiSchema = mongoose.Schema({
     nominal: Number,
     poin: Number,
     status_transaksi: String,
+    nama: String,
+    norek: String,
     keterangan: String
 }, {
     timestamps: true
