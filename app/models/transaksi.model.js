@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const {ObjectId} = mongoose.Schema.Types;
 
 const TransaksiSchema = mongoose.Schema({
-    iduser:{type: ObjectId, ref:'users.model'},
+    iduser:String,
     iddonasi:{type: ObjectId, ref:'donasi.model'},
     foto: String,
     bank:String,

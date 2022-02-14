@@ -39,6 +39,17 @@ exports.findAll = (req, res) => {
         });
 };
 
+exports.findAllUserTransaksi = (req, res) => {
+    Trans.find({iduser: req.params.userid})
+        .then(transs => {
+            res.send(transs);
+        }).catch(err => {
+            res.status(500).send({
+                message: err.message || "Some error occurred while retrieving notes."
+            });
+        });
+};
+
 // Update a note identified by the noteId in the request
 exports.update = (req, res) => {
     // Find note and update it with the request body

@@ -8,6 +8,9 @@ module.exports = (app) => {
     app.get('/transaksi', transaksi.findAll);
 
     // Retrieve all transaksi
+    app.get('/transaksi/user/:userid', transaksi.findAllUserTransaksi);
+
+    // Retrieve all transaksi
     app.get('/transaksi/:transaksiId', transaksi.findOne);
 
 
