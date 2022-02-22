@@ -7,16 +7,24 @@ module.exports = (app) => {
     // Retrieve all transaksi
     app.get('/transaksi', transaksi.findAll);
 
-    // Retrieve all transaksi
+    // Retrieve all transaksi donasi
+    app.get('/transaksi/donasi', transaksi.findAllTransaksiDonasi);
+
+    // Retrieve all transaksi withdraw
+    app.get('/transaksi/withdraw', transaksi.findAllTransaksiWd);
+
+    // Retrieve all transaksi user
     app.get('/transaksi/user/:userid', transaksi.findAllUserTransaksi);
 
+    app.get('/transaksi/donasi/:donasiid', transaksi.findAllDonasiTransaksi);
+
     // Retrieve all transaksi
-    app.get('/transaksi/:transaksiId', transaksi.findOne);
+    app.get('/transaksi/:transId', transaksi.findOne);
 
 
     // Delete Chat
-    app.delete('/transaksi/:transaksiId', transaksi.delete)
+    app.delete('/transaksi/:transId', transaksi.delete)
 
     // Update Chat
-    app.put('/transaksi/:transaksiId', transaksi.update)
+    app.put('/transaksi/:transId', transaksi.update)
 }

@@ -50,6 +50,39 @@ exports.findAllUserTransaksi = (req, res) => {
         });
 };
 
+exports.findAllDonasiTransaksi = (req, res) => {
+    Trans.find({iddonasi: req.params.donasiid})
+        .then(transs => {
+            res.send(transs);
+        }).catch(err => {
+            res.status(500).send({
+                message: err.message || "Some error occurred while retrieving notes."
+            });
+        });
+};
+
+exports.findAllTransaksiDonasi = (req, res) => {
+    Trans.find({keterangan: 'donatur'})
+        .then(transs => {
+            res.send(transs);
+        }).catch(err => {
+            res.status(500).send({
+                message: err.message || "Some error occurred while retrieving notes."
+            });
+        });
+};
+
+exports.findAllTransaksiWd = (req, res) => {
+    Trans.find({keterangan: 'withdraw'})
+        .then(transs => {
+            res.send(transs);
+        }).catch(err => {
+            res.status(500).send({
+                message: err.message || "Some error occurred while retrieving notes."
+            });
+        });
+};
+
 // Update a note identified by the noteId in the request
 exports.update = (req, res) => {
     // Find note and update it with the request body
