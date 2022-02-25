@@ -17,6 +17,8 @@ module.exports = (app) => {
 
     // Retrieve all donasi
     app.get('/donasis/:donasiId', donasi.findOne);
+    // app.get('/donasis/ok/kesehatan', donasi.findWith);
+
 
 
     // Delete Chat

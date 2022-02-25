@@ -1,5 +1,5 @@
 const Donasi = require('../models/donasi.model.js');
-
+const mongoose = require("mongoose");
 // Create and Save a new Note
 exports.create = (req, res) => {
     // Create a Note
@@ -119,25 +119,37 @@ exports.update = (req, res) => {
 };
 
 // Find a single note with a noteId
-exports.findOne = (req, res) => {
-    Donasi.findById(req.params.donasiId)
-        .then(user => {
-            if (!user) {
-                return res.status(404).send({
-                    message: "donasi not found with id " + req.params.donasiId
+exports.findOne = async (req, res) => {
+    await Donasi.aggregate(
+        [
+            {$match:{_id: mongoose.Types.ObjectId(req.params.donasiId)}},
+            {
+                $lookup:{
+                    from: "users",
+                    localField: "iduser",
+                    foreignField: "_id",
+                    as: "id_users"
+                },
+            },
+
+            {
+                $project:{
+                    iduser: 0,
+                },
+            },
+            {$sort: {_id: 1}},
+        ],
+        function (err,data) {
+            if (err || data === null) {
+                res.json({
+                  msg: "Gagal mendapatkan data",
+                  err,
                 });
-            }
-            res.send(user);
-        }).catch(err => {
-            if (err.kind === 'ObjectId') {
-                return res.status(404).send({
-                    message: "donasi not found with id " + req.params.donasiId
-                });
-            }
-            return res.status(500).send({
-                message: "Error retrieving donasi with id " + req.params.donasiId
-            });
-        });
+              } else {
+                res.json(data[0]);
+              }
+        }
+    )
 };
 
 // Find a single note with a noteId
