@@ -9,6 +9,7 @@ module.exports = (app) => {
     app.get('/donasis', donasi.findAll);
 
      // Retrieve all donasi
+     app.post('/donasis/userid', donasi.findDonasiUser);
      app.get('/donasis/valid', donasi.findStatus);
      app.get('/donasis/valid/kesehatan', donasi.findKesehatan);
      app.get('/donasis/valid/sedekah', donasi.findSedekah);

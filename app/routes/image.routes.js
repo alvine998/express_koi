@@ -1,11 +1,13 @@
 module.exports = (app) => {
   const multer = require("multer");
   const fs = require('fs');
+  // const express = require('express');
+  // const apps = express();
 
   // Use Multer
-  var storage = multer.diskStorage({
+  var Storage = multer.diskStorage({
     destination: (req, file, callBack) => {
-      callBack(null, 'resources/uploads')
+      callBack(null, 'resources/uploads/')
     },
     filename: (req, file, callBack) => {
       callBack(null, `${file.fieldname}_${file.originalname}`)
@@ -13,15 +15,31 @@ module.exports = (app) => {
   });
 
   var upload = multer({
-    storage: storage
+    storage: Storage
   });
 
   app.post("/upload", upload.single('images'), (req, res) => {
-    console.log(req.file.filename)
-    res.status(200).send({
-      message: "success",
-      info: req.file.filename
-    })
+    console.log(req.file);
+    console.log(req.body);
+    try{
+      res.status(200).send({
+        message: "success",
+        info: req.file.filename
+      })
+    } catch(err){
+      console.log(err)
+    }
+    
+  });
+
+  app.post("/upload/ktp", upload.single('files'), (req, res) => {
+    console.log(req.file);
+    console.log(req.body);
+    console.log(req.file.filename);
+      res.status(200).send({
+        message: "success",
+        info: req.file.filename
+      })
   });
 
   app.delete("/delete/:imageName", (req, res) => {
@@ -57,6 +75,19 @@ module.exports = (app) => {
       })
     }
   });
+
+  // app.post("/upload/verifikasi", (req, res) => {
+  //   var fstream;
+  //   req.pipe(req.busboy);
+  //   req.busboy.on('file', (fieldname, file, filename) => {
+  //     console.log("Uploading: " + filename);
+  //     fstream = fs.createWriteStream(filename);
+  //     file.pipe(fstream);
+  //     fstream.on('close', () => {
+  //       res.redirect('back');
+  //     })
+  //   })
+  // });
 
   // API Image Bukti Transaksi
   app.post("/upload/transaksi", upload.single('transaksiimages'), (req, res) => {

@@ -9,12 +9,10 @@ const path = require('path');
 // var privateKey = fs.readFileSync(`sslcert/server.key`, `utf8`);
 // var certificate = fs.readFileSync(`sslcert/server.crt`, `utf8`);
 
-
 const app = express();
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }))
-
 var corsOptions = {
     origin: "http://localhost:3000"
 };

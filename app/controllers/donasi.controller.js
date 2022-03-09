@@ -8,11 +8,11 @@ exports.create = (req, res) => {
         judul: req.body.judul,
         deskripsi: req.body.deskripsi,
         target: req.body.target,
-        terkumpul: req.body.terkumpul,
+        terkumpul: req.body.terkumpul || 0,
         kategori: req.body.kategori,
-        foto: req.body.foto,
+        foto: req.body.foto || "",
         durasi: req.body.durasi,
-        status_donasi: req.body.status_donasi
+        status_donasi: req.body.status_donasi || "waiting"
     });
 
     // Save Note in the database
@@ -72,6 +72,17 @@ exports.findLainlain = (req,res) => {
 
 exports.findBencana = (req,res) => {
     Donasi.find({kategori: 'Bencana Alam', status_donasi: 'Valid'})
+        .then(donasis => {
+            res.send(donasis);
+        }).catch(err => {
+            res.status(500).send({
+                message: err.message || "Some error occurred while retrieving notes."
+            });
+        });
+}
+
+exports.findDonasiUser = (req,res) => {
+    Donasi.find({iduser: req.body.iduser})
         .then(donasis => {
             res.send(donasis);
         }).catch(err => {
