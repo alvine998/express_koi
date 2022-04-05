@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const {ObjectId} = mongoose.Schema.Types;
 
 const DonasiSchema = mongoose.Schema({
-    iduser:{type: ObjectId, ref:'users.model.js'},
+    iduser:String,
     judul: String,
     deskripsi: String,
     target: Number,
