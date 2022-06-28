@@ -1,22 +1,11 @@
 const mongoose = require('mongoose');
 
 const UsersSchema = mongoose.Schema({
-    nama: String,
-    nohp: String,
-    email: String,
-    jeniskelamin: String,
-    alamat: String,
-    fotoktp: String,
-    pekerjaan: String,
+    name: String,
+    phone: String,
+    username: String,
     password: String,
-    foto: String,
-    jumlah: Number,
-    frekuensi_donasi: Number,
-    poin: Number,
-    fotorekening:String,
-    statusktp:String,
-    statusrekening:String,
-    statususer: String
+    email: String
 }, {
     timestamps: true
 });
