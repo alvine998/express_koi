@@ -32,7 +32,7 @@ module.exports = (app) => {
     
   });
 
-  app.post("/upload/ktp", upload.single('files'), (req, res) => {
+  app.post("/upload/products", upload.single('files'), (req, res) => {
     console.log(req.file);
     console.log(req.body);
     console.log(req.file.filename);

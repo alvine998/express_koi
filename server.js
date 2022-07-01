@@ -48,6 +48,7 @@ require('./app/routes/bannerimage.routes.js')(app);
 require('./app/routes/banner.routes.js')(app);
 require('./app/routes/donasi.routes.js')(app);
 require('./app/routes/transaksi.routes.js')(app);
+require('./app/routes/product.routes.js')(app);
 
 
 const dirname = path.resolve();
