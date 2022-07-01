@@ -5,6 +5,7 @@ exports.create = (req, res) => {
     // Create a Note
     const product = new Product({
         title: req.body.title,
+        userid: req.body.userid,
         description: req.body.description,
         price: req.body.price,
         increase: req.body.increase,
