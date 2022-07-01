@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
+const {ObjectId} = mongoose.Schema.Types;
 
 const UsersSchema = mongoose.Schema({
     title: String,
+    userid: {type: ObjectId, ref:'users.model'},
     description: String,
     price: Number,
     increase: Number,

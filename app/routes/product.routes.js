@@ -3,4 +3,6 @@ module.exports = (app) => {
 
     app.get('/products', products.findAll)
     app.post('/products/create', products.create)
+    app.get('/products/list', products.findAll)
+    app.put('/products/update/:productId', products.update)
 }
