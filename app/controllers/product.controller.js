@@ -30,8 +30,8 @@ exports.create = (req, res) => {
         });
 };
 
-exports.findStatus = (req,res) => {
-    Product.find({status_product: 'Valid'})
+exports.findById = (req,res) => {
+    Product.find({userid: req.params.userId})
         .then(products => {
             res.send(products);
         }).catch(err => {

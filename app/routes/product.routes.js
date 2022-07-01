@@ -5,4 +5,5 @@ module.exports = (app) => {
     app.post('/products/create', products.create)
     app.get('/products/list', products.findAll)
     app.put('/products/update/:productId', products.update)
+    app.get('/products/byid/:userId', products.findById)
 }
